@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Sunflower Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .fact-display {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow-wrap: break-word;
+        }
+
+        .fact-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffcc00;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .fact-button:hover {
+            background-color: #ffb300;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Sunflower Facts</h1>
+        <div id="factDisplay" class="fact-display">Click the button to get a random fact!</div>
+        <button id="factButton" class="fact-button">Get a Fact</button>
+    </div>
+    <script>
+        const sunflowerFacts = [
+            { "fact": "Sunflowers are native to the Americas." },
+            { "fact": "The scientific name for the sunflower is Helianthus annuus." },
+            { "fact": "Sunflowers can grow to be over 10 feet tall." },
+            { "fact": "The flower head of a sunflower is actually made up of thousands of tiny flowers called florets." },
+            { "fact": "Sunflowers are known for their ability to turn their heads to follow the sun across the sky, a behavior known as heliotropism." },
+            { "fact": "Sunflower seeds are a popular snack and are also used to produce sunflower oil." },
+            { "fact": "Sunflowers can have a variety of colors, including yellow, orange, red, and even brown." },
+            { "fact": "The seeds of sunflowers are rich in nutrients and are a good source of vitamin E, magnesium, and selenium." },
+            { "fact": "Sunflowers are often used as a symbol of happiness and positivity." },
+            { "fact": "The tallest sunflower ever recorded was over 30 feet tall." }
+        ];
+
+        let attempts = 0;
+
+        const factButton = document.getElementById('factButton');
+        const factDisplay = document.getElementById('factDisplay');
+
+        factButton.addEventListener('click', () => {
+            if (attempts < 3) {
+                moveButton();
+                attempts++;
+            } else {
+                const randomIndex = Math.floor(Math.random() * sunflowerFacts.length);
+                factDisplay.textContent = sunflowerFacts[randomIndex].fact;
+            }
+        });
+
+        function moveButton() {
+            const randomX = Math.random() * (window.innerWidth - factButton.offsetWidth);
+            const randomY = Math.random() * (window.innerHeight - factButton.offsetHeight);
+            factButton.style.position = 'absolute';
+            factButton.style.left = `${randomX}px`;
+            factButton.style.top = `${randomY}px`;
+        }
+    </script>
+</body>
+</html>
